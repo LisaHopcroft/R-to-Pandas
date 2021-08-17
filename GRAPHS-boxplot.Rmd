@@ -73,6 +73,7 @@ r.penguins.boxplot( column='bill_length_mm' )
 plt.show()
 
 ### To add: boxplot with different species
+### To add: how to add jitter
 
 ```
 
