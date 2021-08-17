@@ -41,4 +41,4 @@ vignettes/*.pdf
 
 # LH: files to not include
 local_setup.R
-R-to_Pandas.Rproj
+R-to-Pandas.Rproj
