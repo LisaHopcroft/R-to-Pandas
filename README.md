@@ -5,5 +5,5 @@ that demonstrate the equivalent Pandas functionality for R tidyverse/ggplot2
 functionality.
 
 The examples are contained within the same Markdown files, using
-[{reticulate}]{https://rstudio.github.io/reticulate/} to run Python within the R
+[{reticulate}](https://rstudio.github.io/reticulate) to run Python within the R
 environment.
