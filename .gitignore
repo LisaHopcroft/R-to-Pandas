@@ -38,3 +38,7 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# LH: files to not include
+local_setup.R
+R-to_Pandas.Rproj
