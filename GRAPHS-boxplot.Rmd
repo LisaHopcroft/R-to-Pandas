@@ -1,0 +1,128 @@
+---
+title: 'Generating graphs: boxplot'
+author: "Lisa Hopcroft"
+date: "17/08/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source("launch_environment.R")
+source("local_setup.R")
+
+### To install python modules for reticulate:
+### https://stackoverflow.com/questions/54261906/reticulate-importerror-no-module-named-pandas-in-rstudio-version-1-2
+### py_install("pandas")
+### py_install("matplotlib")
+### py_install("numpy")
+
+
+### Reticulate message upon install:
+### To activate this environment, use
+###
+###     $ conda activate r-reticulate
+###
+### To deactivate an active environment, use
+###
+###     $ conda deactivate
+
+```
+
+```{python}
+### Example
+### https://rstudio.github.io/reticulate/articles/r_markdown.html
+import pandas
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+# 
+# t = np.arange(0.0, 2.0, 0.01)
+# s = 1 + np.sin(2*np.pi*t)
+# 
+# plt.plot( t,s )
+# plt.grid(True)
+# #plt.safefig('test.png')
+# plt.show()
+
+```
+
+# Generating a boxplot/violin plot etc
+
+## Looking at the data
+
+```{r}
+head(penguins)
+```
+
+```{python}
+print(r.penguins.head(10))
+```
+
+### Generating a boxplot
+
+```{r}
+
+penguins %>% 
+  ggplot( aes( y=bill_length_mm) ) +
+  geom_boxplot() +
+  labs( title="Bill length (all species)",
+        subtitle="Generated using R")
+
+penguins %>% 
+  ggplot( aes( x=species, y=bill_length_mm) ) +
+  geom_boxplot() +
+  labs( title="Bill length (by species)",
+        subtitle="Generated using R")
+
+```
+
+```{python}
+
+### Boxplot using matplotlib
+r.penguins.boxplot( column='bill_length_mm' )
+plt.show()
+
+### The same boxplot using Seaborn
+### https://seaborn.pydata.org/generated/seaborn.boxplot.html
+sns.set_theme(style="whitegrid")
+ax = sns.boxplot( y=r.penguins.bill_length_mm )
+plt.show()
+
+### Splitting the data by species
+ax = sns.boxplot( x="species", y="bill_length_mm", data=r.penguins )
+### Alternatively:
+### ax = sns.boxplot( x=r.penguins.species, y=r.penguins.bill_length_mm )
+plt.show()
+
+### Adding jitter
+### Remove outliers so that they are not plotted twice
+ax = sns.boxplot( x="species", y="bill_length_mm", data=r.penguins, showfliers = False )
+ax = sns.swarmplot(x="species", y="bill_length_mm", data=r.penguins, color=".25" )
+plt.show()
+
+### Colouring by another categorical variable
+### Remove outliers so that they are not plotted twice
+ax = sns.boxplot( x="species", y="bill_length_mm", hue="sex", data=r.penguins, showfliers = False )
+ax = sns.swarmplot(x="species", y="bill_length_mm", hue="sex", color=".25", data=r.penguins, dodge=True )
+plt.show()
+
+### Applying a colour palette and changing alpha
+### https://seaborn.pydata.org/tutorial/color_palettes.html
+ax = sns.boxplot( x="species", y="bill_length_mm", hue="sex", data=r.penguins, palette="hls", showfliers = False )
+ax = sns.swarmplot(x="species", y="bill_length_mm", hue="sex", color=".25", alpha=0.5, data=r.penguins, dodge=True )
+plt.show()
+
+
+```
+
+Using seaborn
+
+```{python}
+
+
+```
+
+```{r}
+citation("palmerpenguins")
+```
