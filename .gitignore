@@ -19,6 +19,7 @@
 
 # RStudio files
 .Rproj.user/
+.Rproj
 
 # produced vignettes
 vignettes/*.html
@@ -37,6 +38,7 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
-*.Rproj
 
+# LH: files to not include
+*.Rproj
 local_setup.R

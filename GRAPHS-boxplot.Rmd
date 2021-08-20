@@ -36,6 +36,7 @@ import pandas
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+
 # 
 # t = np.arange(0.0, 2.0, 0.01)
 # s = 1 + np.sin(2*np.pi*t)
@@ -116,12 +117,6 @@ plt.show()
 
 ```
 
-Using seaborn
-
-```{python}
-
-
-```
 
 ```{r}
 citation("palmerpenguins")
